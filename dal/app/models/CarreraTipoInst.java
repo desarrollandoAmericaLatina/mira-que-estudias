@@ -84,6 +84,8 @@ public class CarreraTipoInst extends Model {
 	public Carrera carrera;
 
 	public String tipoInst;
+	
+	
 
 	public String campo1;
 

@@ -69,7 +69,7 @@ sus carreras.</div>
 						<td>${carreraTipoInst.tipoInst.toLowerCase().capitalizeWords()}</td>
 						<td><span style="display:none;">${carreraTipoInst.pixelsEmpleabilidad}</span><span class="inlinesparkline">${carreraTipoInst.stringEmpleabilidad}</span></td>
 						<td><div style="border:solid 1px black; background-color:#EC6400; color:white;height:16px; width:${carreraTipoInst.pixelsEmpleabilidad}px">${carreraTipoInst.ultEmpleabilidad.valor}</div></td>
-						<td><span style="display:none;">${carreraTipoInst.ultSueldoAprox.valor}</span><div style="border:solid 1px black; background-color:#EC6400; color:white;height:16px; width:${carreraTipoInst.ultSueldoInteger}px">${carreraTipoInst.ultSueldoAprox.valor}</div></td>
+						<td><span style="display:none;">${carreraTipoInst.ultSueldoAprox.valor}</span><div style="border:solid 1px black; background-color:#EC6400; color:white;height:16px; width:${carreraTipoInst.ultSueldoInteger}px">${carreraTipoInst.ultSueldoAprox.valor.format("##,###")}</div></td>
 						
 					</tr>
 				#{/list}
