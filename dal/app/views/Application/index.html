@@ -1,9 +1,9 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'Mira que estudias' /}
 
 <style>
 
-.tablesorter a:link { text-decoration: none; font-weight:bold; color:black; font-size: 1.1em;}
+.tablesorter a:link { text-decoration: none; font-weight:bold; color:black; }
 
 .tablesorter td {vertical-align: center;}
 
@@ -33,8 +33,8 @@
 	.ui-layout-east { width:50%;}
 	</style>
 
-<p>Selecciona el área de interes y luego podras comparar y ver en detalle
-sus carreras.</p>
+<div style="margin-left:0.5em; width: 40em; padding:5px; background-color:black; color:white">Selecciona el área de interes y luego podras comparar y ver en detalle
+sus carreras.</div>
 
 <div style="margin-top:1em;" id="tab-menu-container">
 	<ul>
@@ -49,6 +49,8 @@ sus carreras.</p>
 
 <div id="container" style="height:640px;">
 	<div class="pane ui-layout-center">
+	
+	<div style="position:relative;">Buscar <input id="textFiltro" type="text" style="width:40em;"><span style="position:absolute;right:1em;">Haz click en el nombre para ver el detalle</span></div>	
 		<table class="tablesorter" id="myTable">
 			<thead>
 				<tr>
@@ -56,15 +58,19 @@ sus carreras.</p>
 					<th>Tipo Institución</th>
 					<th>Empleabilidad</th>
 					<th>Ultimo año</th>
+					<th>Sueldo 4&#8338; año</th>
+					
 				</tr>
 			</thead>
 			#{list items:area.carreras, as:'carrera'}
 				#{list items:carrera.carrerasTipoInst, as:'carreraTipoInst'}
 					<tr>
-						<td><img align="absmiddle" src="../public/images/icons/s-area${area.id}.png"/> <a href="javascript:void cargarCarrera(${carrera.id})">${carrera.nombre}</a></td>
+						<td><img align="absmiddle" src="../public/images/icons/s-area${area.id}.png"/> <a href="javascript:void cargarCarrera(${carreraTipoInst.id})">${carrera.nombre}</a></td>
 						<td>${carreraTipoInst.tipoInst.toLowerCase().capitalizeWords()}</td>
-						<td><span class="inlinesparkline">${carreraTipoInst.stringEmpleabilidad}</span></td>
+						<td><span style="display:none;">${carreraTipoInst.pixelsEmpleabilidad}</span><span class="inlinesparkline">${carreraTipoInst.stringEmpleabilidad}</span></td>
 						<td><div style="border:solid 1px black; background-color:#EC6400; color:white;height:16px; width:${carreraTipoInst.pixelsEmpleabilidad}px">${carreraTipoInst.ultEmpleabilidad.valor}</div></td>
+						<td><span style="display:none;">${carreraTipoInst.ultSueldoAprox.valor}</span><div style="border:solid 1px black; background-color:#EC6400; color:white;height:16px; width:${carreraTipoInst.ultSueldoInteger}px">${carreraTipoInst.ultSueldoAprox.valor}</div></td>
+						
 					</tr>
 				#{/list}
 			#{/list}
@@ -76,7 +82,7 @@ sus carreras.</p>
 	
 <script>	
 	$(document).ready(function () {
-		$('#container').layout({ east: {size: "300"} });
+		$('#container').layout({ east: {size: "400"} });
 		$('.inlinesparkline').sparkline('html', {lineColor: "#000", fillColor: "#EC6400", chartRangeMin: 0, chartRangeMax:1, width: "60px", height: "30px; "}); 
 		
 	});
@@ -103,5 +109,44 @@ $(document).ready(function()
         $("#myTable").tablesorter(); 
     } 
 ); 
-    
+
+
+(function($) {
+    $.fn.multiFilter = function(filters) {
+        var $table = $(this);
+        return $table.find('tbody > tr').each(function() {
+            var tr = $(this);
+            
+            // Make it an array to avoid special cases later.
+            if(!$.isArray(filters))
+                filters = [ filters ];
+
+            howMany = 0;
+            for(i = 0, f = filters[0]; i < filters.length; f = filters[++i]) {
+                var index = 0;
+                $table.find('thead > tr > th').each(function(i) {
+                    if($(this).text() == f.column) {
+                        index = i;
+                        return false;
+                    }
+                });
+                var text = tr.find('td:eq(' + index + ')').text();
+                if(text.toLowerCase().indexOf(f.word.toLowerCase()) != -1)
+                    ++howMany;
+            }
+            if(howMany == filters.length)
+                tr.show();
+            else
+                tr.hide();
+        });
+    };
+})(jQuery);
+
+$('#textFiltro').keyup(function() {
+    var t = $('table');
+    $('#myTable').multiFilter({ column: 'nombre', word: this.value });
+});
+
 </script>
+
+<!-- Desarrollado por Hans Poo y Alex Cevallo, Welinux S.A. http://www.welinux.cl -->

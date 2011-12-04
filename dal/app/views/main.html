@@ -8,6 +8,8 @@
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/tabs-menu.css'}">
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/tablas-formato-blanco.css'}">
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/style.css'}">
+        
+         
 	
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
@@ -31,11 +33,15 @@
 <link rel="stylesheet" media="screen"
 	href="@{'/public/stylesheets/jquery-layout.css'}" />
 
-        
-        #{get 'moreScripts' /}
-    </head>
+<script language="javascript" type="text/javascript"
+	src="@{'/public/jqplot/jquery.jqplot.min.js'}"></script>
+<link rel="stylesheet" type="text/css"
+	href="@{'/public/jqplot/jquery.jqplot.css'}" />
+
+#{get 'moreScripts' /}
+</head>
     <body style="background-image: url(@{'/public/images/plain.png'})">
-    	<h1 style="padding:0.5em; "><span style="background-color: #EC6400; color:white; ">Mira que estudias</span></h1>
+    	<div style="padding:0.5em; font-size:2em; "><span style="background-color: #EC6400; color:white; ">Mira que estudias</span></div>
         #{doLayout /}
     </body>
 </html>

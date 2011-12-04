@@ -22,6 +22,11 @@ public class CarreraTipoInst extends Model {
 		EMPLEABILIDAD, SUELDO, COSTO
 	}
 
+	public String getNombre() {
+
+		return carrera.nombre;
+	}
+
 	public class AnoValor {
 		public int ano;
 		public float valor;
@@ -39,6 +44,9 @@ public class CarreraTipoInst extends Model {
 	@Transient
 	List<AnoValor> empleabilidad = new ArrayList<AnoValor>();
 
+	@Transient
+	List<AnoValor> sueldos = new ArrayList<AnoValor>();
+
 	@PostLoad
 	public void init() {
 
@@ -50,6 +58,18 @@ public class CarreraTipoInst extends Model {
 				TipoDato.EMPLEABILIDAD));
 		empleabilidad.add(new AnoValor(2008, toFloat(emp2008),
 				TipoDato.EMPLEABILIDAD));
+
+		sueldos.add(new AnoValor(1, arreglaSueldo(sueldo1), TipoDato.SUELDO));
+		sueldos.add(new AnoValor(2, arreglaSueldo(sueldo2), TipoDato.SUELDO));
+		sueldos.add(new AnoValor(3, arreglaSueldo(sueldo3), TipoDato.SUELDO));
+		sueldos.add(new AnoValor(4, arreglaSueldo(sueldo4), TipoDato.SUELDO));
+
+	}
+
+	static float arreglaSueldo(String s) {
+		s = s.replaceAll("\\.", "");
+
+		return Float.parseFloat(s + ".0");
 
 	}
 
@@ -105,15 +125,15 @@ public class CarreraTipoInst extends Model {
 
 	public String campo28;
 
-	public String campo29;
+	public String sueldo1;
 
 	public String campo3;
 
-	public String campo30;
+	public String sueldo2;
 
-	public String campo31;
+	public String sueldo3;
 
-	public String campo32;
+	public String sueldo4;
 
 	public String campo33;
 
@@ -180,6 +200,11 @@ public class CarreraTipoInst extends Model {
 
 	}
 
+	public AnoValor getUltSueldoAprox() {
+		return sueldos.get(sueldos.size() - 1);
+
+	}
+
 	public String getStringEmpleabilidad() {
 
 		StringBuilder sb = new StringBuilder();
@@ -203,4 +228,11 @@ public class CarreraTipoInst extends Model {
 
 	}
 
+	public int getUltSueldoInteger() {
+
+		AnoValor ultSueldoAprox = this.getUltSueldoAprox();
+
+		return (int) ultSueldoAprox.valor / 10000;
+
+	}
 }

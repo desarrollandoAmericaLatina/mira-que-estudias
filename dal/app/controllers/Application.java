@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Area;
 import models.Carrera;
+import models.CarreraTipoInst;
 import play.mvc.Controller;
 
 public class Application extends Controller {
@@ -28,11 +29,12 @@ public class Application extends Controller {
 		render(area, areas);
 	}
 
-	public static void detalleCarrera(Long carreraID) {
+	public static void detalleCarrera(Long carreraTipoInstID) {
 
-		Carrera carrera = Carrera.findById(carreraID);
+		CarreraTipoInst carreraTipoInst = CarreraTipoInst
+				.findById(carreraTipoInstID);
 
-		render(carrera);
+		render(carreraTipoInst);
 	}
 
 }

@@ -1,7 +1,60 @@
-<div>
-
-<div style="font-size:1.2em; font-weight: bold;padding: 0.5em 0;">${carrera.nombre}</div>
 
 
+<div style="font-size:1.2em; font-weight: bold;padding: 0.5em 0;">${carreraTipoInst.nombre}</div>
 
-</div>
+<div id="chartSueldos" style="height:200px;width:300px; "></div>
+<div style="height:1em;"></div>
+<div id="chartEmpleabilidad" style="height:200px;width:300px;"></div>
+
+
+
+<script class="code" type="text/javascript">
+	$(document).ready(function() {
+	
+	
+
+	$.jqplot('chartEmpleabilidad', [ [ 
+	
+		#{list items:carreraTipoInst.empleabilidad, as:'anoValor'}
+			[ ${anoValor.ano}, ${anoValor.valor} ],
+		#{/list}
+		
+						 ] ], {
+					title : 'Empleabilidad dentro de los primeros años',
+					axes : {
+						yaxis : {
+							min : 0,
+							max : 1
+						}
+					},
+					series : [ {
+						color : '#5FAB78'
+					} ]
+	});
+
+	$.jqplot('chartSueldos', [ [ 
+	
+		#{list items:carreraTipoInst.sueldos, as:'anoValor'}
+			[ ${anoValor.ano}, ${anoValor.valor} ],
+		#{/list}
+		
+						 ] ], {
+					title : 'Sueldo esperado dentro de los primeros años',
+					axes : {
+						yaxis : {
+							min : 0,
+							max : 2500000
+						}
+					},
+					series : [ {
+						color : '#5FAB78'
+					} ]
+	});
+				
+				
+	});
+</script>
+
+
+
+
