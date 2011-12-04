@@ -1,0 +1,92 @@
+#tab-menu-container {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 4px solid #EC6400;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+}
+#tab-menu-container ul {
+    clear: left;
+    float: left;
+    left: 10px;
+    list-style: none outside none;
+    margin: 10px 0 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+#tab-menu-container ul li {
+    display: block;
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#tab-menu-container ul li a {
+    background: none repeat scroll 0 0 #DDDDDD;
+    color: #EC6400;
+    display: block;
+    font-size: 1.2em;
+    line-height: 1.3em;
+    margin: 0 0 0 1px;
+    padding: 3px 10px;
+    text-decoration: none;
+}
+#tab-menu-container ul li a:hover {
+    background: none repeat scroll 0 0 #336699;
+    color: #FFFFFF;
+}
+#tab-menu-container ul li a.active, #tab-menu-container ul li a.active:hover {
+    background: none repeat scroll 0 0 #EC6400;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+#tab-menu-nivel2 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 4px solid #EC6400;
+    float: left;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 10;
+}
+#tab-menu-nivel2 ul {
+    clear: left;
+    float: left;
+    left: 10px;
+    list-style: none outside none;
+    margin: 10px 0 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+}
+#tab-menu-nivel2 ul li {
+    display: block;
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#tab-menu-nivel2 ul li a {
+    background: none repeat scroll 0 0 #DDDDDD;
+    color: #EC6400;
+    display: block;
+    line-height: 1.3em;
+    margin: 0 0 0 1px;
+    padding: 3px 10px;
+    text-decoration: none;
+}
+#tab-menu-nivel2 ul li a:hover {
+    background: none repeat scroll 0 0 #336699;
+    color: #FFFFFF;
+}
+#tab-menu-nivel2 ul li a.active, #tab-menu-nivel2 ul li a.active:hover {
+    background: none repeat scroll 0 0 #EC6400;
+    color: #FFFFFF;
+    font-weight: bold;
+}
